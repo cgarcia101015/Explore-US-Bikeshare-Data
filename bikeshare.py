@@ -17,18 +17,18 @@ def get_filters():
     """
     print('Hello! Let\'s explore some US bikeshare data!')
     # get user input for city (chicago, new york city, washington). HINT: Use a while loop to handle invalid inputs
-    city = input("Please input city: ").lower()
-    month = input("Please input month: ").lower()
-    day = input("Please input day: ").lower()
+    city = input("Please input city: (New York City, Chicago or Washington) ").lower()
+    month = input("Please input month: (All, January, February, March, April, May or June) ").lower()
+    day = input("Please input day: (Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday) ").lower()
 
     while city not in ['chicago','new york city','washington']:
-        city = input("Invalid city! Please input city name: ").lower()
+        city = input("Invalid input! Please input the correct city: ").lower()
 
     while month not in ['all','january','february','march','april','may','june']:
-        month = input("Invalid month! Please input the correct month: ").lower()
+        month = input("Invalid input! Please input the correct month: ").lower()
 
     while day not in ['all','monday','tuesday','wednesday','thursday','friday','saturday','sunday']:
-        day = input("Invalid day! Please input the correct day: ").lower()
+        day = input("Invalid input! Please input the correct day: ").lower()
 
 
     print('-'*40)
@@ -55,8 +55,6 @@ def load_data(city, month, day):
 
     df['month'] = df['Start Time'].apply(lambda x: x.month)
     df['week_day'] = df['Start Time'].apply(lambda x: x.strftime('%A').lower())
-
-
 
     if month != 'all':
         month_list = ["all","january","february","march","april","may","june"]
@@ -173,6 +171,7 @@ def user_stats(df, city):
         # Display counts of gender
         gender = df['Gender'].value_counts()
 
+        print("Counts of gender:")
         print(gender)
 
         # Display earliest, most recent, and most common year of birth
